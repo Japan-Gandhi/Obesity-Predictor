@@ -4,7 +4,7 @@ import numpy as np
 
 
 app = Flask(__name__)
-model = pickle.load(open('Obesity-Predictor\model.pkl','rb'))
+model = pickle.load(open('../model.pkl','rb'))
 
 # required conversion for the model
 
@@ -85,7 +85,7 @@ def predictPage():
 
     age = int(request.form["age"]) #2
     featureList.append(age)
-    
+
     height = int(float(request.form["height"])) #3
     featureList.append(height)
 
@@ -147,17 +147,17 @@ def predictPage():
     transport = int(transportDict[transport]) # convert to numerical value
     featureList.append(transport)
 
-    
+
     finalFeatures= np.array([featureList])
     predictedClass = model.predict(finalFeatures)
-    
+
     predictedFinalClass = predictionDict[predictedClass[0]]
 
     return render_template("index.html", prediction = predictedFinalClass)
 
 
 
-if __name__ == "__main__":  
+if __name__ == "__main__":
     app.run(debug=True)  # by writing true it automatically detects the changes
 
 
