@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css')}}"
+    />
+  </head>
+
+  <body>
+    <div class="image-container">
+      <img src="{{url_for('static', filename='Asset 1.svg')}}" alt="" />
+    </div>
+
+    <div class="main-heading">Welcome to Obesity Prediction</div>
+
+    <div class="sub-heading">
+      Want to try whether you are obese or not?<br />If you are to which
+      category of obesity do you belong to? <br />Check by filling the below
+      form!
+    </div>
+
+    <form action="/predict" , method="post">
+      <div class="input-container">
+        <label for="gender">Gender:</label>
+        <input type="radio" id="male" name="gender" value="male" />
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female" />
+        <label for="female">Female</label><br />
+      </div>
+
+      <div class="input-container">
+        <label for="age"
+          >Age:
+          <input
+            type="range"
+            id="age"
+            name="age"
+            min="0"
+            max="100"
+            oninput="document.getElementById('age-value').textContent = this.value"
+          /><span id="age-value">0</span></label
+        ><br />
+      </div>
+      <div class="input-container">
+        <label for="height"
+          >Height (in metres):
+          <input
+            type="range"
+            id="height"
+            name="height"
+            min="0"
+            max="3"
+            step="0.01"
+            oninput="document.getElementById('height-value').textContent = this.value"
+          />
+          <span id="height-value">0</span></label
+        ><br />
+      </div>
+      <div class="input-container">
+        <label for="weight"
+          >Weight (in kgs):
+          <input
+            type="range"
+            id="weight"
+            name="weight"
+            min="0"
+            max="200"
+            step="1"
+            oninput="document.getElementById('weight-value').textContent = this.value"
+          />
+          <span id="weight-value">0</span></label
+        ><br />
+      </div>
+      <div class="input-container">
+        <label for="family-history">Family History with Overweight:</label>
+        <select id="family-history" name="family-history">
+          <option value="yes">Yes</option>
+          <option value="no">No</option></select
+        ><br />
+      </div>
+      <div class="input-container">
+        <label for="high-calorie-food"
+          >Frequency of Consumption of High Calorie Food:</label
+        >
+        <select id="high-calorie-food" name="high-calorie-food">
+          <option value="yes">Yes</option>
+          <option value="no">No</option></select
+        ><br />
+      </div>
+      <div class="input-container">
+        <label for="vegetables">Frequency of Consumption of Vegetables:</label>
+        <input
+          type="number"
+          id="vegetables"
+          name="vegetables"
+          min="0"
+          step="1"
+        /><br />
+      </div>
+
+      <div class="input-container">
+        <label for="main-meals">Number of Main Meals Eaten in a Day:</label>
+        <input
+          type="number"
+          id="main-meals"
+          name="main-meals"
+          min="0"
+          step="1"
+        /><br />
+      </div>
+      <div class="input-container">
+        <label for="food-between-meals"
+          >Consumption of Food Between Meals:</label
+        >
+        <select id="food-between-meals" name="food-between-meals">
+          <option value="no">No</option>
+          <option value="sometimes">Sometimes</option>
+          <option value="frequently">Frequently</option>
+          <option value="always">Always</option></select
+        ><br />
+      </div>
+      <div class="input-container">
+        <label for="smoking">Do you Smoke:</label>
+        <select id="smoking" name="smoking">
+          <option value="yes">Yes</option>
+          <option value="no">No</option></select
+        ><br />
+      </div>
+
+      <div class="input-container">
+        <label for="water-intake">Total Water Intake (in litres):</label>
+        <input
+          type="number"
+          id="water-intake"
+          name="water-intake"
+          min="0"
+          step="0.1"
+        /><br />
+      </div>
+      <div class="input-container">
+        <label for="calorie-intake-monitor"
+          >Do you Monitor Your Calorie Intake?</label
+        >
+        <select id="calorie-intake-monitor" name="calorie-intake-monitor">
+          <option value="yes">Yes</option>
+          <option value="no">No</option></select
+        ><br />
+      </div>
+      <div class="input-container">
+        <label for="physical-activity"
+          >Frequency of Your Physical Activity (in hours):</label
+        >
+        <input
+          type="number"
+          id="physical-activity"
+          name="physical-activity"
+          min="0"
+          step="0.5"
+        /><br />
+      </div>
+      <div class="input-container">
+        <label for="technology-usage"
+          >Total Time Spent on Technological Devices (in hours):
+
+          <input
+            type="range"
+            id="technology-usage"
+            name="technology-usage"
+            min="0"
+            max="24"
+            step="0.5"
+            oninput="document.getElementById('technology-usage-value').textContent = this.value"
+          /><span id="technology-usage-value">0</span></label
+        ><br />
+      </div>
+
+      <div class="input-container">
+        <label for="alcohol">Consumption of Alcohol:</label>
+        <select id="alcohol" name="alcohol">
+          <option value="no">No</option>
+          <option value="sometimes">Sometimes</option>
+          <option value="always">Always</option>
+          <option value="frequently">Frequently</option></select
+        ><br />
+      </div>
+      <div class="input-container">
+        <label for="transport">Transport Used:</label>
+        <select id="transport" name="transport">
+          <option value="walking">Walking</option>
+          <option value="motorbike">Motorbike</option>
+          <option value="public-transport">Public Transport</option>
+          <option value="automobile">Automobile</option>
+          <option value="bike">Bike</option></select
+        ><br />
+      </div>
+
+      <h3>Your Result: {{prediction}}</h3>
+      <input type="submit" value="Predict" />
+    </form>
+  </body>
+  <script src="" async defer></script>
+</html>
